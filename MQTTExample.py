@@ -29,6 +29,7 @@ import os
 import random
 import ssl
 import time
+import json
 
 import jwt
 import paho.mqtt.client as mqtt
@@ -43,7 +44,7 @@ MAXIMUM_BACKOFF_TIME = 32
 # Whether to wait with exponential backoff before publishing.
 should_backoff = False
 
-
+BIKE_ID = "00"
 # [START iot_mqtt_jwt]
 def create_jwt(project_id, private_key_file, algorithm):
     """Creates a JWT (https://jwt.io) to establish an MQTT connection.
@@ -249,7 +250,7 @@ def main():
     for i in range(1, args.num_messages + 1):
         # Process network events.
         client.loop()
-        pxbdGPS.GetGPSLocationPretty()
+        pxbdGPS.WaitUntilGPSIsAvailablePretty()
 
         # Wait if backoff is required.
         if should_backoff:
@@ -265,8 +266,7 @@ def main():
             minimum_backoff_time *= 2
             client.connect(args.mqtt_bridge_hostname, args.mqtt_bridge_port)
 
-        payload = '{}/{}-payload-{}-lat:{}-long:{}'.format(
-                args.registry_id, args.device_id, i, pxbdGPS.Latitude, pxbdGPS.Longitude)
+        payload json.dumps({ 'BikeID': BIKE_ID, 'lat': pxbdGPS.Latitude, 'lng': pxbdGPS.Longitude})
         print('Publishing message {}/{}: \'{}\''.format(
                 i, args.num_messages, payload))
         print(payload)
