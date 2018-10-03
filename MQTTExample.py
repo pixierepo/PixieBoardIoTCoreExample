@@ -22,7 +22,7 @@ for this sample.
 """
 
 # [START iot_mqtt_includes]
-from PixieBoardGPSLocation import PixieBoardGPSLocation
+from PixieBoardGPSLocation.PixieBoardGPSLocation import PixieBoardGPSLocation
 import argparse
 import datetime
 import os
