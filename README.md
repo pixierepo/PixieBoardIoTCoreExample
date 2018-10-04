@@ -1,5 +1,5 @@
 # PixieBoardIoTCoreExample
-This example show how you can send your GPS Location to the IoT Core Service on Google.
+This example shows how you can send your GPS Location to the IoT Core Service on Google. This example was done to show case PixieBoards capabilities.
 
 ## How to clone and install
 ```sh
