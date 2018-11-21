@@ -266,7 +266,7 @@ def main():
             minimum_backoff_time *= 2
             client.connect(args.mqtt_bridge_hostname, args.mqtt_bridge_port)
 
-        payload json.dumps({ 'BikeID': BIKE_ID, 'lat': pxbdGPS.Latitude, 'lng': pxbdGPS.Longitude})
+        payload = json.dumps({ 'BikeID': BIKE_ID, 'lat': pxbdGPS.Latitude, 'lng': pxbdGPS.Longitude})
         print('Publishing message {}/{}: \'{}\''.format(
                 i, args.num_messages, payload))
         print(payload)
